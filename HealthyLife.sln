@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthyLifeApi", "HealthyLi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthyLife.Application", "HealthyLife.Application\HealthyLife.Application.csproj", "{E71ED103-6B99-4DDD-B92C-1B3153A29DFB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthyLife.Persistence", "..\HealthyLife.Persistence\HealthyLife.Persis\HealthyLife.Persistence.csproj", "{4870F2B2-5295-44FE-A17F-CC9ED419E475}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthyLife.Persistence", "HealthyLife.Persistence\HealthyLife.Persistence.csproj", "{80F7091D-C29D-4E21-A071-2A63793D3F12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{E71ED103-6B99-4DDD-B92C-1B3153A29DFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E71ED103-6B99-4DDD-B92C-1B3153A29DFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E71ED103-6B99-4DDD-B92C-1B3153A29DFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4870F2B2-5295-44FE-A17F-CC9ED419E475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4870F2B2-5295-44FE-A17F-CC9ED419E475}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4870F2B2-5295-44FE-A17F-CC9ED419E475}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4870F2B2-5295-44FE-A17F-CC9ED419E475}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F7091D-C29D-4E21-A071-2A63793D3F12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F7091D-C29D-4E21-A071-2A63793D3F12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F7091D-C29D-4E21-A071-2A63793D3F12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F7091D-C29D-4E21-A071-2A63793D3F12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
