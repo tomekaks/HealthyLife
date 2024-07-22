@@ -4,9 +4,9 @@ using MyCalorieCounter.Application.DomainModels;
 
 namespace HealthyLife.Persistence.Database.Configurations
 {
-    class MyActivityConfiguration : IEntityTypeConfiguration<MyActivity>
+    class WorkoutConfiguration : IEntityTypeConfiguration<Workout>
     {
-        public void Configure(EntityTypeBuilder<MyActivity> builder)
+        public void Configure(EntityTypeBuilder<Workout> builder)
         {
             builder.HasOne(a => a.Exercise)
                    .WithMany()

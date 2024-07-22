@@ -1,6 +1,6 @@
 ﻿namespace MyCalorieCounter.Application.DomainModels
 {
-    public class MyActivity
+    public class Workout
     {
         public int Id { get; set; }
         public string UserId { get; set; }

@@ -15,7 +15,7 @@ namespace HealthyLife.Persistence.Database
         public DbSet<DailySum> DailySums { get; set; }
         public DbSet<Meal> Meals { get; set; }
         public DbSet<DailyGoal> DailyGoals { get; set; }
-        public DbSet<MyActivity> MyActivities { get; set; }
+        public DbSet<Workout> Workouts { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
