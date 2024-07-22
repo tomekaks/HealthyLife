@@ -1,6 +1,6 @@
 ﻿namespace HealthyLife.Application.Features.Products.Dtos
 {
-    public class ProductDto
+    public class UpdateProductDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

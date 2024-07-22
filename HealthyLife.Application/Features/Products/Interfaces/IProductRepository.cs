@@ -5,6 +5,7 @@ namespace HealthyLife.Application.Features.Products.Interfaces
 {
     public interface IProductRepository : IGenericRepository<Product>
     {
-
+        Task<Product> GetByIdAsync(int id);
+        Task<List<Product>> GetAllAsync();
     }
 }

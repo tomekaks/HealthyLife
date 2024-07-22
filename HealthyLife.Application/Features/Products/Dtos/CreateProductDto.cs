@@ -1,8 +1,7 @@
 ﻿namespace HealthyLife.Application.Features.Products.Dtos
 {
-    public class ProductDto
+    public class CreateProductDto
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public double Calories { get; set; }
         public double Proteins { get; set; }
