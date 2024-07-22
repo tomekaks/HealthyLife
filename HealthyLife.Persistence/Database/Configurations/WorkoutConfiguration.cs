@@ -8,9 +8,14 @@ namespace HealthyLife.Persistence.Database.Configurations
     {
         public void Configure(EntityTypeBuilder<Workout> builder)
         {
-            builder.HasOne(a => a.Exercise)
+            builder.HasOne(w => w.Exercise)
                    .WithMany()
-                   .HasForeignKey(m => m.ExerciseId)
+                   .HasForeignKey(w => w.ExerciseId)
+                   .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(w => w.DailySum)
+                   .WithMany(d => d.Workouts)
+                   .HasForeignKey(w => w.DailySumId)
                    .OnDelete(DeleteBehavior.NoAction);
         }
     }

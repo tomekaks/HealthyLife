@@ -13,11 +13,9 @@ namespace HealthyLife.Persistence.Database.Configurations
                    .HasForeignKey(m => m.ProductId)
                    .OnDelete(DeleteBehavior.NoAction);
 
-            builder.Property(m => m.Date)
-                   .IsRequired();
-
-            builder.Property(m => m.UserId)
-                   .IsRequired();
+            builder.HasOne(m => m.DailySum)
+                .WithMany(d => d.Meals)
+                .HasForeignKey(m => m.DailySumId);
         }
     }
 }

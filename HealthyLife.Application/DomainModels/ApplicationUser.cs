@@ -7,7 +7,7 @@ namespace MyCalorieCounter.Application.DomainModels
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime DateJoined { get; set; }
+        public DateOnly DateJoined { get; set; }
         public List<DailySum> DailySums { get; set; }
         public DailyGoal DailyGoal { get; set; }
     }
