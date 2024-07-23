@@ -2,19 +2,18 @@
 using HealthyLife.Application.Features.Products.Interfaces;
 using HealthyLife.Application.Features.Products.Mappings;
 using HealthyLife.Application.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using MyCalorieCounter.Application.DomainModels;
 
 namespace HealthyLife.Application.Features.Products.Services
 {
     public class ProductService : IProductService
     {
-        private readonly IProductRepository _productRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IApplicationDbContext _context;
 
-        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork)
+        public ProductService(IApplicationDbContext context)
         {
-            _productRepository = productRepository;
-            _unitOfWork = unitOfWork;
+            _context = context;
         }
 
         public async Task AddAsync(CreateProductDto productDto)
@@ -29,20 +28,21 @@ namespace HealthyLife.Application.Features.Products.Services
                 Fiber = productDto.Fiber
             };
 
-            await _productRepository.AddAsync(product);
-            await _unitOfWork.SaveAsync();
+            await _context.Products.AddAsync(product);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            var product = await _productRepository.GetByIdAsync(id);
-            _productRepository.Delete(product);
-            await _unitOfWork.SaveAsync();
+            var product = await _context.Products.FindAsync(id) ?? throw new Exception("Product not found");
+
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task<List<ProductDto>> GetAll()
+        public async Task<List<ProductDto>> GetAllAsync()
         {
-            var products = await _productRepository.GetAllAsync();
+            var products = await _context.Products.ToListAsync();
 
             if (products is null || products.Count < 1)
             {
@@ -53,16 +53,16 @@ namespace HealthyLife.Application.Features.Products.Services
             return productsDtos;
         }
 
-        public async Task<ProductDto> GetById(int id)
+        public async Task<ProductDto> GetByIdAsync(int id)
         {
-            var product = await _productRepository.GetByIdAsync(id);
+            var product = await _context.Products.FindAsync(id);
             var productDto = product.ToDto() ?? throw new Exception("Product now found");
             return productDto;
         }
 
-        public async Task Update(UpdateProductDto productDto)
+        public async Task UpdateAsync(UpdateProductDto productDto)
         {
-            var product = await _productRepository.GetByIdAsync(productDto.Id) ?? throw new Exception("Product not found");
+            var product = await _context.Products.FindAsync(productDto.Id) ?? throw new Exception("Product not found");
 
             product.Calories = productDto.Calories;
             product.Proteins = productDto.Proteins;
@@ -70,8 +70,8 @@ namespace HealthyLife.Application.Features.Products.Services
             product.Fats = productDto.Fats;
             product.Fiber = productDto.Fiber;
 
-            _productRepository.Update(product);
-            await _unitOfWork.SaveAsync();
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -5,9 +5,9 @@ namespace HealthyLife.Application.Features.Products.Interfaces
     public interface IProductService
     {
         Task AddAsync(CreateProductDto productDto);
-        Task Delete(int id);
-        Task Update(UpdateProductDto productDto);
-        Task<ProductDto> GetById(int id);
-        Task<List<ProductDto>> GetAll();
+        Task DeleteAsync(int id);
+        Task UpdateAsync(UpdateProductDto productDto);
+        Task<ProductDto> GetByIdAsync(int id);
+        Task<List<ProductDto>> GetAllAsync();
     }
 }

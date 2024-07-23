@@ -21,10 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\HealthyLife.Application\HealthyLife.Application.csproj" />
     <ProjectReference Include="..\HealthyLife.Persistence\HealthyLife.Persistence.csproj" />
   </ItemGroup>

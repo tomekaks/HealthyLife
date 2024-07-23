@@ -1,4 +1,5 @@
 using HealthyLife.Persistence;
+using HealthyLife.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.ConfigureApplicationServices(builder.Configuration);
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
 
 var app = builder.Build();
@@ -22,8 +24,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthentication();
+//app.UseAuthorization();
 
 app.MapControllers();
 
