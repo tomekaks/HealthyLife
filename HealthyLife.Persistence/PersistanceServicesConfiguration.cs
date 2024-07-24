@@ -1,6 +1,5 @@
 ﻿using HealthyLife.Application.Interfaces;
 using HealthyLife.Persistence.Database;
-using HealthyLife.Persistence.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
