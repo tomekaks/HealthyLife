@@ -1,6 +1,6 @@
 ﻿using HealthyLife.Application.Features.Products.Dtos;
 
-namespace HealthyLife.Application.Features.Products.Interfaces
+namespace HealthyLife.Application.Features.Products.Services
 {
     public interface IProductService
     {

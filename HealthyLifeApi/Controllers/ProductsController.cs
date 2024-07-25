@@ -1,5 +1,5 @@
 ﻿using HealthyLife.Application.Features.Products.Dtos;
-using HealthyLife.Application.Features.Products.Interfaces;
+using HealthyLife.Application.Features.Products.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthyLifeApi.Controllers

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HealthyLife.Persistence.Database.Configurations.Identity
 {
-    internal class UserRoleConfiguration : IEntityTypeConfiguration<IdentityRole<string>>
+    internal class UserRoleConfiguration : IEntityTypeConfiguration<IdentityUserRole<string>>
     {
-        public void Configure(EntityTypeBuilder<IdentityRole<string>> builder)
+        public void Configure(EntityTypeBuilder<IdentityUserRole<string>> builder)
         {
             builder.HasData(
                 new IdentityUserRole<string>()
