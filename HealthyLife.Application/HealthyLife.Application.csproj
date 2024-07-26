@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\DailyGoals\Services\" />
     <Folder Include="Features\DailySums\Services\" />
     <Folder Include="Features\Meals\Services\" />
     <Folder Include="Features\Workouts\Services\" />
