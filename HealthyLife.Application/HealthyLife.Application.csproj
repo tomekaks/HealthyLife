@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Features\DailySums\Services\" />
-    <Folder Include="Features\Workouts\Services\" />
   </ItemGroup>
 
 </Project>
