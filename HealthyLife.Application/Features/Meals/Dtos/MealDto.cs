@@ -1,12 +1,12 @@
-﻿namespace MyCalorieCounter.Application.DomainModels
+﻿using HealthyLife.Application.Features.Products.Dtos;
+
+namespace HealthyLife.Application.Features.Meals.Dtos
 {
-    public class Meal
+    public class MealDto
     {
         public int Id { get; set; }
-        public int ProductId { get; set; }
-        public Product Product { get; set; }
+        public ProductDto ProductDto { get; set; }
         public int DailySumId { get; set; }
-        public DailySum DailySum { get; set; }
         public int Weight { get; set; }
         public double Calories { get; set; }
         public double Proteins { get; set; }
