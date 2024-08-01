@@ -1,5 +1,7 @@
 ﻿using HealthyLife.Application.Features.Workouts.Dtos;
+using HealthyLife.Application.Features.Workouts.Mappings;
 using HealthyLife.Application.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using MyCalorieCounter.Application.DomainModels;
 
 namespace HealthyLife.Application.Features.Workouts.Services
@@ -34,14 +36,28 @@ namespace HealthyLife.Application.Features.Workouts.Services
             await _context.SaveChangesAsync();
         }
 
-        public Task<List<WorkoutDto>> GetAllAsync(int dailySumId)
+        public async Task<List<WorkoutDto>> GetAllAsync(int dailySumId)
         {
-            throw new NotImplementedException();
+            var workouts = await _context.Workouts
+                            .Include(workout => workout.Exercise)
+                            .Where(workout => workout.DailySumId == dailySumId)
+                            .ToListAsync();
+
+            if (workouts.Count < 1)
+            {
+                return new List<WorkoutDto>();
+            }
+
+            var workoutsDto = workouts.Select(workout => workout.ToDto()).ToList();
+            return workoutsDto;
         }
 
-        public Task<WorkoutDto> GetByIdAsync(int id)
+        public async Task<WorkoutDto> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var workout = await GetWorkoutAsync(id);
+
+            var workoutDto = workout.ToDto();
+            return workoutDto;
         }
 
         public async Task UpdateAsync(UpdateWorkoutDto workoutDto)
