@@ -6,11 +6,11 @@ namespace HealthyLifeApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class ProductsController : BaseController
     {
         private readonly IProductService _productService;
 
-        public ProductsController(IProductService productService)
+        public ProductsController(IProductService productService, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
         {
             _productService = productService;
         }
@@ -27,8 +27,8 @@ namespace HealthyLifeApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto>> Get(int id)
         {
-            var product = await _productService.GetByIdAsync(id);
-            return Ok(product);
+            var productDto = await _productService.GetByIdAsync(id);
+            return Ok(productDto);
         }
 
 
