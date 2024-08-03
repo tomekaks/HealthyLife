@@ -10,6 +10,9 @@ namespace HealthyLife.Persistence.Database.Configurations
         {
             builder.Property(p => p.Name)
                    .IsRequired();
+
+            builder.Property(p => p.CreatedBy)
+                   .IsRequired();
         }
     }
 }

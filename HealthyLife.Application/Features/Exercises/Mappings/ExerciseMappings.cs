@@ -11,7 +11,8 @@ namespace HealthyLife.Application.Features.Exercises.Mappings
             {
                 Id = exercise.Id,
                 Name = exercise.Name,
-                CaloriesPerHour = exercise.CaloriesPerHour
+                CaloriesPerHour = exercise.CaloriesPerHour,
+                CreatedBy = exercise.CreatedBy
             };
         }
     }

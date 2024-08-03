@@ -4,5 +4,6 @@
     {
         public string Name { get; set; }
         public int CaloriesPerHour { get; set; }
+        public string CreatedBy { get; set; }      
     }
 }

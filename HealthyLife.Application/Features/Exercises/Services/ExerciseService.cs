@@ -20,7 +20,8 @@ namespace HealthyLife.Application.Features.Exercises.Services
             var exercise = new Exercise()
             {
                 Name = exerciseDto.Name,
-                CaloriesPerHour = exerciseDto.CaloriesPerHour
+                CaloriesPerHour = exerciseDto.CaloriesPerHour,
+                CreatedBy = exerciseDto.CreatedBy
             };
 
             await _context.Exercises.AddAsync(exercise);

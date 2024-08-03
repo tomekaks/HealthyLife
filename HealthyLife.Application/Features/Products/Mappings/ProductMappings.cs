@@ -15,7 +15,9 @@ namespace HealthyLife.Application.Features.Products.Mappings
                 Proteins = product.Proteins,
                 Carbs = product.Carbs,
                 Fats = product.Fats,
-                Fiber = product.Fiber
+                Fiber = product.Fiber,
+                Price = product.Price,
+                CreatedBy = product.CreatedBy
             };
         }
     }

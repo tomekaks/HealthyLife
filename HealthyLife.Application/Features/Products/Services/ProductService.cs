@@ -24,7 +24,9 @@ namespace HealthyLife.Application.Features.Products.Services
                 Proteins = productDto.Proteins,
                 Carbs = productDto.Carbs,
                 Fats = productDto.Fats,
-                Fiber = productDto.Fiber
+                Fiber = productDto.Fiber,
+                Price = productDto.Price,
+                CreatedBy = productDto.CreatedBy
             };
 
             await _context.Products.AddAsync(product);
@@ -68,6 +70,7 @@ namespace HealthyLife.Application.Features.Products.Services
             product.Carbs = productDto.Carbs;
             product.Fats = productDto.Fats;
             product.Fiber = productDto.Fiber;
+            product.Price = productDto.Price;
 
             _context.Products.Update(product);
             await _context.SaveChangesAsync();
