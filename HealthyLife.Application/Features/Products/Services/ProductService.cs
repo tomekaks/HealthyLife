@@ -15,7 +15,7 @@ namespace HealthyLife.Application.Features.Products.Services
             _context = context;
         }
 
-        public async Task AddAsync(CreateProductDto productDto)
+        public async Task CreateAsync(CreateProductDto productDto)
         {
             var product = new Product()
             {

@@ -20,7 +20,7 @@ namespace HealthyLifeApi.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<List<ExerciseDto>>> Get()
+        public async Task<ActionResult<List<ExerciseDto>>> GetAllAsync()
         {
             var exercises = await _exerciseService.GetAllAsync();
             return Ok(exercises);
@@ -28,7 +28,7 @@ namespace HealthyLifeApi.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ExerciseDto>> Get(int id)
+        public async Task<ActionResult<ExerciseDto>> GetAsync(int id)
         {
             var exerciseDto = await _exerciseService.GetByIdAsync(id);
             return Ok(exerciseDto);
@@ -36,23 +36,23 @@ namespace HealthyLifeApi.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CreateExerciseDto exerciseDto)
+        public async Task<ActionResult> CreateAsync([FromBody] CreateExerciseDto exerciseDto)
         {
-            await _exerciseService.AddAsync(exerciseDto);
+            await _exerciseService.CreateAsync(exerciseDto);
             return Ok();
 
         }
 
 
         [HttpPut]
-        public async Task Put([FromBody] UpdateExerciseDto exerciseDto)
+        public async Task UpdateAsync([FromBody] UpdateExerciseDto exerciseDto)
         {
             await _exerciseService.UpdateAsync(exerciseDto);
         }
 
 
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             await _exerciseService.DeleteAsync(id);
         }

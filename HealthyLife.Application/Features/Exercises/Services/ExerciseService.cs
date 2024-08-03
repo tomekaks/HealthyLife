@@ -15,7 +15,7 @@ namespace HealthyLife.Application.Features.Exercises.Services
             _context = context;
         }
 
-        public async Task AddAsync(CreateExerciseDto exerciseDto)
+        public async Task CreateAsync(CreateExerciseDto exerciseDto)
         {
             var exercise = new Exercise()
             {

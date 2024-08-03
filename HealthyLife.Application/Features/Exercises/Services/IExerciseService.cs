@@ -4,7 +4,7 @@ namespace HealthyLife.Application.Features.Exercises.Services
 {
     public interface IExerciseService
     {
-        Task AddAsync(CreateExerciseDto exerciseDto);
+        Task CreateAsync(CreateExerciseDto exerciseDto);
         Task DeleteAsync(int id);
         Task UpdateAsync(UpdateExerciseDto exerciseDto);
         Task<ExerciseDto> GetByIdAsync(int id);

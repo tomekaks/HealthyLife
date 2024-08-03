@@ -16,7 +16,7 @@ namespace HealthyLife.Application.Features.Meals.Services
             _context = context;
         }
 
-        public async Task AddAsync(CreateMealDto mealDto)
+        public async Task CreateAsync(CreateMealDto mealDto)
         {
             var meal = new Meal()
             {
@@ -36,7 +36,7 @@ namespace HealthyLife.Application.Features.Meals.Services
 
         public async Task DeleteAsync(int id)
         {
-            var meal = await _context.Meals.FindAsync(id) ?? throw new Exception("Meal not found");
+            var meal = await GetMealAsync(id);
             _context.Meals.Remove(meal);
             await _context.SaveChangesAsync();
         }
@@ -57,9 +57,9 @@ namespace HealthyLife.Application.Features.Meals.Services
             return mealsDto;
         }
 
-        public async Task<MealDto> GetAsync(int id)
+        public async Task<MealDto> GetByIdAsync(int id)
         {
-            var meal = await _context.Meals.FindAsync(id) ?? throw new Exception("Meal not found");
+            var meal = await GetMealAsync(id);
 
             var mealDto = meal.ToDto();
             return mealDto;
@@ -67,7 +67,7 @@ namespace HealthyLife.Application.Features.Meals.Services
 
         public async Task UpdateAsync(UpdateMealDto mealDto)
         {
-            var meal = await _context.Meals.FindAsync(mealDto.Id) ?? throw new Exception("Meal not found");
+            var meal = await GetMealAsync(mealDto.Id);
 
             meal.Weight = mealDto.Weight;
             meal.Calories = mealDto.Calories;
@@ -78,8 +78,12 @@ namespace HealthyLife.Application.Features.Meals.Services
 
             _context.Meals.Update(meal);
             await _context.SaveChangesAsync();
+        }
 
-
+        private async Task<Meal> GetMealAsync(int id)
+        {
+            var meal = await _context.Meals.FindAsync(id) ?? throw new Exception("Meal not found");
+            return meal;
         }
     }
 }
