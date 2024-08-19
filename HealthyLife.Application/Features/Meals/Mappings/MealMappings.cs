@@ -1,6 +1,6 @@
-﻿using HealthyLife.Application.Features.Meals.Dtos;
-using HealthyLife.Application.Features.Products.Mappings;
-using MyCalorieCounter.Application.DomainModels;
+﻿using HealthyLife.Application.DomainModels;
+using HealthyLife.Application.Features.MealItems.Mappings;
+using HealthyLife.Application.Features.Meals.Dtos;
 
 namespace HealthyLife.Application.Features.Meals.Mappings
 {
@@ -11,15 +11,13 @@ namespace HealthyLife.Application.Features.Meals.Mappings
             return new MealDto()
             {
                 Id = meal.Id,
-                ProductDto = meal.Product.ToDto(),
-                DailySumId = meal.DailySumId,
-                Weight = meal.Weight,
                 Calories = meal.Calories,
                 Proteins = meal.Proteins,
                 Carbs = meal.Carbs,
                 Fats = meal.Fats,
-                Fiber = meal.Fiber
-
+                Fiber = meal.Fiber,
+                DailySumId = meal.DailySumId,
+                MealItemsDto = meal.MealItems.Select(meal => meal.ToDto()).ToList()
             };
         }
     }

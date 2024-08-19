@@ -1,8 +1,8 @@
-﻿using HealthyLife.Application.Features.DailySums.Dtos;
+﻿using HealthyLife.Application.DomainModels;
+using HealthyLife.Application.Features.DailySums.Dtos;
 using HealthyLife.Application.Features.DailySums.Mappings;
 using HealthyLife.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using MyCalorieCounter.Application.DomainModels;
 using System.Linq.Expressions;
 
 namespace HealthyLife.Application.Features.DailySums.Services
@@ -18,7 +18,8 @@ namespace HealthyLife.Application.Features.DailySums.Services
 
         public async Task CreateAsync(string userId)
         {
-            var dailySum = new DailySum { UserId = userId };
+            var date = DateOnly.Parse(DateTime.Now.ToString());
+            var dailySum = new DailySum { UserId = userId, Date = date };
 
             await _context.DailySums.AddAsync(dailySum);
             await _context.SaveChangesAsync();
@@ -43,8 +44,20 @@ namespace HealthyLife.Application.Features.DailySums.Services
 
         public async Task<DailySumDto> GetByDateAsync(string userId, DateOnly date)
         {
-            var dailySum = await GetDailySumAsync(sum => sum.UserId == userId
-                            && sum.Date == date);
+            //var dailySum = await GetDailySumAsync(sum => sum.UserId == userId
+            //                && sum.Date == date);
+
+            var dailySum = await _context.DailySums
+                            .Include(sum => sum.Workouts)
+                            .Include(sum => sum.Meals)
+                            .FirstOrDefaultAsync(sum => sum.UserId == userId && sum.Date == date);
+
+            if (dailySum == null)
+            {
+                var entityEntry = await _context.DailySums.AddAsync(new DailySum { Date = date, UserId = userId });
+                var newDailySum = entityEntry.Entity.ToDto();
+                return newDailySum;
+            }
 
             var dailySumDto = dailySum.ToDto();
             return dailySumDto;

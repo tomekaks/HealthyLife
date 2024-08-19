@@ -1,5 +1,5 @@
-﻿using HealthyLife.Application.Features.Products.Dtos;
-using MyCalorieCounter.Application.DomainModels;
+﻿using HealthyLife.Application.DomainModels;
+using HealthyLife.Application.Features.Products.Dtos;
 
 namespace HealthyLife.Application.Features.Products.Mappings
 {

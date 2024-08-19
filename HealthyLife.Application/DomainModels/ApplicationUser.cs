@@ -1,7 +1,6 @@
-﻿
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
-namespace MyCalorieCounter.Application.DomainModels
+namespace HealthyLife.Application.DomainModels
 {
     public class ApplicationUser : IdentityUser
     {

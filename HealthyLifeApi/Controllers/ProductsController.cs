@@ -23,6 +23,13 @@ namespace HealthyLifeApi.Controllers
             return Ok(products);
         }
 
+        [HttpGet("ByUser")]
+        public async Task<ActionResult<List<ProductDto>>> GetByUserAsync()
+        {
+            var products = await _productService.GetAllAsync();
+            return Ok(products);
+        }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto>> GetAsync(int id)
@@ -35,6 +42,8 @@ namespace HealthyLifeApi.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateAsync([FromBody] CreateProductDto productDto)
         {
+            productDto.CreatedBy = CurrentUserId;
+
             await _productService.CreateAsync(productDto);
             return Ok();
 

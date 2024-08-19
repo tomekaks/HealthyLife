@@ -1,5 +1,5 @@
-﻿using HealthyLife.Application.Features.DailyGoals.Dtos;
-using MyCalorieCounter.Application.DomainModels;
+﻿using HealthyLife.Application.DomainModels;
+using HealthyLife.Application.Features.DailyGoals.Dtos;
 
 namespace HealthyLife.Application.Features.DailyGoals.Mappings
 {

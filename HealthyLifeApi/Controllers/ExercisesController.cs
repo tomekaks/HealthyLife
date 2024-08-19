@@ -38,6 +38,8 @@ namespace HealthyLifeApi.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateAsync([FromBody] CreateExerciseDto exerciseDto)
         {
+            exerciseDto.CreatedBy = CurrentUserId;
+
             await _exerciseService.CreateAsync(exerciseDto);
             return Ok();
 

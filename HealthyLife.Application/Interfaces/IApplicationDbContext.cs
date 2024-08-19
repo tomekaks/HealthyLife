@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MyCalorieCounter.Application.DomainModels;
+﻿using HealthyLife.Application.DomainModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace HealthyLife.Application.Interfaces
 {

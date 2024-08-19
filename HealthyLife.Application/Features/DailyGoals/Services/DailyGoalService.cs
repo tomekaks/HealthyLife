@@ -1,8 +1,8 @@
-﻿using HealthyLife.Application.Features.DailyGoals.Dtos;
+﻿using HealthyLife.Application.DomainModels;
+using HealthyLife.Application.Features.DailyGoals.Dtos;
 using HealthyLife.Application.Features.DailyGoals.Mappings;
 using HealthyLife.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using MyCalorieCounter.Application.DomainModels;
 
 namespace HealthyLife.Application.Features.DailyGoals.Services
 {
@@ -33,8 +33,14 @@ namespace HealthyLife.Application.Features.DailyGoals.Services
 
         public async Task<DailyGoalDto> GetAsync(string userId)
         {
-            var dailyGoal = await _context.DailyGoals.FirstOrDefaultAsync(d => d.UserId == userId)
-                            ?? throw new Exception("DailyGoal not found");
+            var dailyGoal = await _context.DailyGoals.FirstOrDefaultAsync(d => d.UserId == userId);
+            
+            if(dailyGoal == null)
+            {
+                var entityEntry = await _context.DailyGoals.AddAsync(new DailyGoal { UserId = userId });
+                var newDailyGoal = entityEntry.Entity.ToDto();
+                return newDailyGoal;
+            }
 
             var dailyGoalDto = dailyGoal.ToDto();
             return dailyGoalDto;

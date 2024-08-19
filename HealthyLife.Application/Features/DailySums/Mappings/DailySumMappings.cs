@@ -1,7 +1,7 @@
-﻿using HealthyLife.Application.Features.DailySums.Dtos;
+﻿using HealthyLife.Application.DomainModels;
+using HealthyLife.Application.Features.DailySums.Dtos;
 using HealthyLife.Application.Features.Meals.Mappings;
 using HealthyLife.Application.Features.Workouts.Mappings;
-using MyCalorieCounter.Application.DomainModels;
 
 namespace HealthyLife.Application.Features.DailySums.Mappings
 {

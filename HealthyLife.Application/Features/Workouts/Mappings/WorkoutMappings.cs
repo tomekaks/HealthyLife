@@ -1,6 +1,6 @@
-﻿using HealthyLife.Application.Features.Exercises.Mappings;
+﻿using HealthyLife.Application.DomainModels;
+using HealthyLife.Application.Features.Exercises.Mappings;
 using HealthyLife.Application.Features.Workouts.Dtos;
-using MyCalorieCounter.Application.DomainModels;
 
 namespace HealthyLife.Application.Features.Workouts.Mappings
 {

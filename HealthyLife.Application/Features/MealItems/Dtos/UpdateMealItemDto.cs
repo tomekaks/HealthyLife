@@ -1,10 +1,9 @@
-﻿namespace HealthyLife.Application.DomainModels
+﻿namespace HealthyLife.Application.Features.MealItems.Dtos
 {
-    public class DailyGoal
+    public class UpdateMealItemDto
     {
         public int Id { get; set; }
-        public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
+        public int Weight { get; set; }
         public double Calories { get; set; }
         public double Proteins { get; set; }
         public double Carbs { get; set; }

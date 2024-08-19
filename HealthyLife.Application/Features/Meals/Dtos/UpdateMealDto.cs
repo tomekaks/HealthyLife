@@ -3,7 +3,7 @@
     public class UpdateMealDto
     {
         public int Id { get; set; }
-        public int Weight { get; set; }
+        public string Name { get; set; }
         public double Calories { get; set; }
         public double Proteins { get; set; }
         public double Carbs { get; set; }

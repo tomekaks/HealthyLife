@@ -1,8 +1,8 @@
-﻿using HealthyLife.Application.Features.Authenticaion.Dtos;
+﻿using HealthyLife.Application.DomainModels;
+using HealthyLife.Application.Features.Authenticaion.Dtos;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using MyCalorieCounter.Application.DomainModels;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

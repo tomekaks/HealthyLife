@@ -1,9 +1,8 @@
-﻿using HealthyLife.Application.Features.Meals.Dtos;
+﻿using HealthyLife.Application.DomainModels;
+using HealthyLife.Application.Features.Meals.Dtos;
 using HealthyLife.Application.Features.Meals.Mappings;
 using HealthyLife.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using MyCalorieCounter.Application.DomainModels;
-using System.Net.Http.Headers;
 
 namespace HealthyLife.Application.Features.Meals.Services
 {
@@ -20,9 +19,7 @@ namespace HealthyLife.Application.Features.Meals.Services
         {
             var meal = new Meal()
             {
-                ProductId = mealDto.ProductId,
                 DailySumId = mealDto.DailySumId,
-                Weight = mealDto.Weight,
                 Calories = mealDto.Calories,
                 Proteins = mealDto.Proteins,
                 Carbs = mealDto.Carbs,
@@ -44,8 +41,7 @@ namespace HealthyLife.Application.Features.Meals.Services
         public async Task<List<MealDto>> GetAllAsync(int dailySumId)
         {
             var meals = await _context.Meals
-                        .Include(meal => meal.Product)
-                        .Where(meal => meal.DailySumId == dailySumId)
+                        .Include(meal => meal.MealItems)
                         .ToListAsync();
 
             if (meals.Count < 1)
@@ -69,7 +65,7 @@ namespace HealthyLife.Application.Features.Meals.Services
         {
             var meal = await GetMealAsync(mealDto.Id);
 
-            meal.Weight = mealDto.Weight;
+            meal.Name = mealDto.Name;
             meal.Calories = mealDto.Calories;
             meal.Proteins = mealDto.Proteins;
             meal.Carbs = mealDto.Carbs;

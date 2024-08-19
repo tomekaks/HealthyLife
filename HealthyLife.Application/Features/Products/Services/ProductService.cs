@@ -1,8 +1,8 @@
-﻿using HealthyLife.Application.Features.Products.Dtos;
+﻿using HealthyLife.Application.DomainModels;
+using HealthyLife.Application.Features.Products.Dtos;
 using HealthyLife.Application.Features.Products.Mappings;
 using HealthyLife.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using MyCalorieCounter.Application.DomainModels;
 
 namespace HealthyLife.Application.Features.Products.Services
 {

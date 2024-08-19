@@ -1,6 +1,5 @@
 ﻿using HealthyLife.Application.Features.Meals.Dtos;
 using HealthyLife.Application.Features.Workouts.Dtos;
-using MyCalorieCounter.Application.DomainModels;
 
 namespace HealthyLife.Application.Features.DailySums.Dtos
 {

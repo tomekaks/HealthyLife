@@ -1,4 +1,4 @@
-﻿namespace MyCalorieCounter.Application.DomainModels
+﻿namespace HealthyLife.Application.DomainModels
 {
     public class Workout
     {
