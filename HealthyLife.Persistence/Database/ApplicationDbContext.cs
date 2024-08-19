@@ -1,7 +1,7 @@
-﻿using HealthyLife.Application.Interfaces;
+﻿using HealthyLife.Application.DomainModels;
+using HealthyLife.Application.Interfaces;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MyCalorieCounter.Application.DomainModels;
 
 namespace HealthyLife.Persistence.Database
 {
@@ -15,6 +15,7 @@ namespace HealthyLife.Persistence.Database
         public DbSet<Product> Products { get; set; }
         public DbSet<DailySum> DailySums { get; set; }
         public DbSet<Meal> Meals { get; set; }
+        public DbSet<MealItem> MealItems { get; set; }
         public DbSet<DailyGoal> DailyGoals { get; set; }
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<Exercise> Exercises { get; set; }

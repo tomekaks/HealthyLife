@@ -8,6 +8,7 @@ namespace HealthyLife.Application.Interfaces
         DbSet<Product> Products { get; set; }
         DbSet<DailySum> DailySums { get; set; }
         DbSet<Meal> Meals { get; set; }
+        DbSet<MealItem> MealItems { get; set; }
         DbSet<DailyGoal> DailyGoals { get; set; }
         DbSet<Workout> Workouts { get; set; }
         DbSet<Exercise> Exercises { get; set; }

@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HealthyLife.Application.DomainModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MyCalorieCounter.Application.DomainModels;
 
 namespace HealthyLife.Persistence.Database.Configurations
 {

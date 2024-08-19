@@ -8,6 +8,7 @@
         public double Carbs { get; set; }
         public double Fats { get; set; }
         public double Fiber { get; set; }
+        public double Price { get; set; }
         public int ProductId { get; set; }
         public int MealId { get; set; }
     }

@@ -42,6 +42,7 @@ namespace HealthyLife.Application.Features.Meals.Services
         {
             var meals = await _context.Meals
                         .Include(meal => meal.MealItems)
+                        .ThenInclude(item => item.Product)
                         .ToListAsync();
 
             if (meals.Count < 1)
