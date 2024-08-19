@@ -24,7 +24,8 @@ namespace HealthyLife.Application.Features.Meals.Services
                 Proteins = mealDto.Proteins,
                 Carbs = mealDto.Carbs,
                 Fats = mealDto.Fats,
-                Fiber = mealDto.Fiber
+                Fiber = mealDto.Fiber,
+                Price = mealDto.Price
             };
 
             await _context.Meals.AddAsync(meal);
@@ -72,6 +73,7 @@ namespace HealthyLife.Application.Features.Meals.Services
             meal.Carbs = mealDto.Carbs;
             meal.Fats = mealDto.Fats;
             meal.Fiber = mealDto.Fiber;
+            meal.Price = mealDto.Price;
 
             _context.Meals.Update(meal);
             await _context.SaveChangesAsync();

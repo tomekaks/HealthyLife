@@ -17,6 +17,7 @@ namespace HealthyLife.Application.Features.MealItems.Mappings
                 Carbs = mealItem.Carbs,
                 Fats = mealItem.Fats,
                 Fiber = mealItem.Fiber,
+                Price = mealItem.Price,
                 ProductId = mealItem.ProductId,
                 ProductDto = mealItem.Product.ToDto(),
                 MealId = mealItem.MealId

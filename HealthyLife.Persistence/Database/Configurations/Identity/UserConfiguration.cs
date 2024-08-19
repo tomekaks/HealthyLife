@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using HealthyLife.Application.DomainModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MyCalorieCounter.Application.DomainModels;
 
 namespace HealthyLife.Persistence.Database.Configurations.Identity
 {

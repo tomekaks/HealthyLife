@@ -1,10 +1,10 @@
-﻿using HealthyLife.Application.Interfaces;
+﻿using HealthyLife.Application.DomainModels;
+using HealthyLife.Application.Interfaces;
 using HealthyLife.Persistence.Database;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MyCalorieCounter.Application.DomainModels;
 
 namespace HealthyLife.Persistence
 {
