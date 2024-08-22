@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HealthyLifeApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/meal-items")]
     [ApiController]
     public class MealItemsController : BaseController
     {
@@ -14,8 +14,8 @@ namespace HealthyLifeApi.Controllers
             _mealItemService = mealItemService;
         }
 
-        [HttpGet("/getall/{mealId}")]
-        public async Task<ActionResult<List<MealItemDto>>> GetAllAsync(int mealId)
+        [HttpGet("by-meal/{mealId}")]
+        public async Task<ActionResult<List<MealItemDto>>> GetByMealAsync(int mealId)
         {
             var mealItems = await _mealItemService.GetAllAsync(mealId);
             return Ok(mealItems);

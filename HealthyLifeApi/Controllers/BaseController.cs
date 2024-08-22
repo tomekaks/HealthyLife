@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HealthyLifeApi.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
     public abstract class BaseController : ControllerBase

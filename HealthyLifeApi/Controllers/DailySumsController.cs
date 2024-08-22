@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HealthyLifeApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/daily-sums")]
     [ApiController]
     public class DailySumsController : BaseController
     {

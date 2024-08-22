@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HealthyLifeApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/products")]
     [ApiController]
     public class ProductsController : BaseController
     {
@@ -23,7 +23,7 @@ namespace HealthyLifeApi.Controllers
             return Ok(products);
         }
 
-        [HttpGet("ByUser")]
+        [HttpGet("by-user")]
         public async Task<ActionResult<List<ProductDto>>> GetByUserAsync()
         {
             var products = await _productService.GetAllAsync();

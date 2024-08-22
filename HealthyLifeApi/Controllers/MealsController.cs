@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HealthyLifeApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/meals")]
     [ApiController]
     public class MealsController : BaseController
     {
@@ -16,7 +16,7 @@ namespace HealthyLifeApi.Controllers
             _mealService = mealService;
         }
 
-        [HttpGet("/getall/{dailySumId}")]
+        [HttpGet("get-all/{dailySumId}")]
         public async Task<ActionResult<List<MealDto>>> GetAllAsync(int dailySumId)
         {
             var meals = await _mealService.GetAllAsync(dailySumId);
