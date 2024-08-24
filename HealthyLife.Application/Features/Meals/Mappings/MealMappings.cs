@@ -11,6 +11,8 @@ namespace HealthyLife.Application.Features.Meals.Mappings
             return new MealDto()
             {
                 Id = meal.Id,
+                Position = meal.Position,
+                Name = meal.Name,
                 Calories = meal.Calories,
                 Proteins = meal.Proteins,
                 Carbs = meal.Carbs,
@@ -18,7 +20,7 @@ namespace HealthyLife.Application.Features.Meals.Mappings
                 Fiber = meal.Fiber,
                 Price = meal.Price,
                 DailySumId = meal.DailySumId,
-                MealItemsDto = meal.MealItems.Select(meal => meal.ToDto()).ToList()
+                MealItemsDto = meal.MealItems.Select(item => item.ToDto()).ToList()
             };
         }
     }

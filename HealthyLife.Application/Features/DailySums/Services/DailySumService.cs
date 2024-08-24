@@ -1,6 +1,7 @@
 ﻿using HealthyLife.Application.DomainModels;
 using HealthyLife.Application.Features.DailySums.Dtos;
 using HealthyLife.Application.Features.DailySums.Mappings;
+using HealthyLife.Application.Features.Meals.Mappings;
 using HealthyLife.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -23,6 +24,9 @@ namespace HealthyLife.Application.Features.DailySums.Services
 
             await _context.DailySums.AddAsync(dailySum);
             await _context.SaveChangesAsync();
+
+            var addedDailySum = await GetDailySumAsync(sum => sum.UserId == userId && sum.Date == date);
+            await CreateInitialMealsAsync(addedDailySum);
         }
 
         public async Task<List<DailySumDto>> GetAllAsync(string userId)
@@ -44,23 +48,19 @@ namespace HealthyLife.Application.Features.DailySums.Services
 
         public async Task<DailySumDto> GetByDateAsync(string userId, DateOnly date)
         {
-            //var dailySum = await GetDailySumAsync(sum => sum.UserId == userId
-            //                && sum.Date == date);
-
             var dailySum = await _context.DailySums
                             .Include(sum => sum.Workouts)
                             .Include(sum => sum.Meals)
+                            .ThenInclude(meal => meal.MealItems)
+                            .ThenInclude(item => item.Product)
                             .FirstOrDefaultAsync(sum => sum.UserId == userId && sum.Date == date);
 
-            if (dailySum == null)
+            if (dailySum is null)
             {
-                var entityEntry = await _context.DailySums.AddAsync(new DailySum { Date = date, UserId = userId });
-                var newDailySum = entityEntry.Entity.ToDto();
-                return newDailySum;
+                return new DailySumDto { Date = date };
             }
 
-            var dailySumDto = dailySum.ToDto();
-            return dailySumDto;
+            return dailySum.ToDto();
         }
 
         public async Task<DailySumDto> GetByIdAsync(int id)
@@ -91,10 +91,34 @@ namespace HealthyLife.Application.Features.DailySums.Services
             var dailySum = await _context.DailySums
                             .Include(sum => sum.Workouts)
                             .Include(sum => sum.Meals)
+                            .ThenInclude(meal => meal.MealItems)
+                            .ThenInclude(item => item.Product)
                             .FirstOrDefaultAsync(expression)
                             ?? throw new Exception("DailySum does not exist");
 
             return dailySum;
+        }
+
+        private async Task<List<Meal>> CreateInitialMealsAsync(DailySum sum)
+        {
+            for(var i = 1; i <= 4; i++)
+            {
+                var meal = new Meal()
+                {
+                    Position = i,
+                    DailySumId = sum.Id,
+                };
+                await _context.Meals.AddAsync(meal);
+            }
+            await _context.SaveChangesAsync();
+
+            var meals = await _context.Meals
+                        .Include(meal => meal.MealItems)
+                        .ThenInclude(item => item.Product)
+                        .Where(meal => meal.DailySumId == sum.Id)
+                        .ToListAsync();
+
+            return meals;
         }
     }
 }

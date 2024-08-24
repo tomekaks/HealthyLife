@@ -28,6 +28,18 @@ namespace HealthyLife.Persistence.Database.Configurations.Identity
                     NormalizedUserName = "ADMIN",
                     PasswordHash = hasher.HashPassword(null, "Password!23"),
                     EmailConfirmed = true
+                },
+                new ApplicationUser()
+                {
+                    Id = "9ef201b2-999c-4161-8f2b-d7994971e5ee",
+                    Email = "tester@email.com",
+                    NormalizedEmail = "TESTE@EMAIL.COM",
+                    FirstName = "Test",
+                    LastName = "User",
+                    UserName = "Tester",
+                    NormalizedUserName = "TESTER",
+                    PasswordHash = hasher.HashPassword(null, "Password!23"),
+                    EmailConfirmed = true
                 });
         }
     }

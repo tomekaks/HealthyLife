@@ -3,7 +3,8 @@
     public class Meal
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public int Position { get; set; }
+        public string? Name { get; set; }
         public double Calories { get; set; }
         public double Proteins { get; set; }
         public double Carbs { get; set; }

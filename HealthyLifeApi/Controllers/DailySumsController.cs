@@ -17,7 +17,7 @@ namespace HealthyLifeApi.Controllers
 
         [HttpGet]
         public async Task<ActionResult<List<DailySumDto>>> GetAllAsync()
-        {
+        { 
             var dailySums = await _dailySumService.GetAllAsync(CurrentUserId);
             return Ok(dailySums);
         }
@@ -30,9 +30,11 @@ namespace HealthyLifeApi.Controllers
         }
 
         [HttpGet("by-date/{date}")]
-        public async Task<ActionResult<DailySumDto>> GetByDateAsync(DateOnly date)
+        public async Task<ActionResult<DailySumDto>> GetByDateAsync(string date)
         {
-            var dailySumDto = await _dailySumService.GetByDateAsync(CurrentUserId, date);
+            var dateOnly = DateOnly.Parse(date);
+
+            var dailySumDto = await _dailySumService.GetByDateAsync(CurrentUserId, dateOnly);
             return Ok(dailySumDto);
         }
 

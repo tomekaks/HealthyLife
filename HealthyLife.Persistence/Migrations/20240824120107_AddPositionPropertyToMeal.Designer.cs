@@ -4,6 +4,7 @@ using HealthyLife.Persistence.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthyLife.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240824120107_AddPositionPropertyToMeal")]
+    partial class AddPositionPropertyToMeal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,7 +105,7 @@ namespace HealthyLife.Persistence.Migrations
                         {
                             Id = "5330c916-053d-41e6-8a44-b9fe25cf27bf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "63c4499f-c23f-43fa-8043-5c7b365eb9a1",
+                            ConcurrencyStamp = "cd8f95e2-23c7-4faa-9964-e6be75153b5a",
                             DateJoined = new DateOnly(1, 1, 1),
                             Email = "admin@email.com",
                             EmailConfirmed = true,
@@ -111,9 +114,9 @@ namespace HealthyLife.Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKUlw9ltcBZxmyT8H2s8LDHpdJoeQxx2zukF6twE9yGuvu5/VjpfSoZBcIWojrO9jQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDkE5+OvqxDXEq6g4/htnjlN+4MNvEcgZkAYvW4mgyv1WrHyaU8iwCrrsyYGDWeAwA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "dc81d3fa-58ad-49a8-95d4-3b63d921102e",
+                            SecurityStamp = "6ada6740-cfea-4f05-8d9d-e720e949ed79",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         },
@@ -121,7 +124,7 @@ namespace HealthyLife.Persistence.Migrations
                         {
                             Id = "9ef201b2-999c-4161-8f2b-d7994971e5ee",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fb8cce9e-3cc1-486d-b8f1-238cd7814d48",
+                            ConcurrencyStamp = "ce54b3c5-e35c-4899-b7b9-3797b65f36a2",
                             DateJoined = new DateOnly(1, 1, 1),
                             Email = "tester@email.com",
                             EmailConfirmed = true,
@@ -130,9 +133,9 @@ namespace HealthyLife.Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "TESTE@EMAIL.COM",
                             NormalizedUserName = "TESTER",
-                            PasswordHash = "AQAAAAIAAYagAAAAENiMhtTJyEXwrvetMqQq+H7VuXdydUYm5HYQEkmM1z0pSlB6/xK1Q6syby5D10il3Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBkwbaNB8Mf7TxaxK8+G8WDJ6gETPEq3TC+2gV5BkiUTjA8//miJOzj9NAWkssnb3Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b410d804-e0bc-4e05-abba-46f6914fcfeb",
+                            SecurityStamp = "648fe000-8540-47a9-9cb7-6683ac5ac50f",
                             TwoFactorEnabled = false,
                             UserName = "Tester"
                         });
@@ -261,6 +264,7 @@ namespace HealthyLife.Persistence.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Position")

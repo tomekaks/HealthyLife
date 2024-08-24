@@ -4,6 +4,7 @@ using HealthyLife.Persistence.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthyLife.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240823222759_SeedTestUser")]
+    partial class SeedTestUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,7 +105,7 @@ namespace HealthyLife.Persistence.Migrations
                         {
                             Id = "5330c916-053d-41e6-8a44-b9fe25cf27bf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "63c4499f-c23f-43fa-8043-5c7b365eb9a1",
+                            ConcurrencyStamp = "5f5c369f-1ef7-4650-ae50-164c174ddaf5",
                             DateJoined = new DateOnly(1, 1, 1),
                             Email = "admin@email.com",
                             EmailConfirmed = true,
@@ -111,9 +114,9 @@ namespace HealthyLife.Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKUlw9ltcBZxmyT8H2s8LDHpdJoeQxx2zukF6twE9yGuvu5/VjpfSoZBcIWojrO9jQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKYUTGQ9+Jc48DKdCCLsvXdSnxJ+5XEIKpC8DFF8+Jy632yUjc6H2sMGy4ffcBHs8A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "dc81d3fa-58ad-49a8-95d4-3b63d921102e",
+                            SecurityStamp = "cf73f5b0-d58d-4370-9ffb-8b04de73de63",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         },
@@ -121,7 +124,7 @@ namespace HealthyLife.Persistence.Migrations
                         {
                             Id = "9ef201b2-999c-4161-8f2b-d7994971e5ee",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fb8cce9e-3cc1-486d-b8f1-238cd7814d48",
+                            ConcurrencyStamp = "21b2603a-eac5-4bca-b354-4bf18b4bf15d",
                             DateJoined = new DateOnly(1, 1, 1),
                             Email = "tester@email.com",
                             EmailConfirmed = true,
@@ -130,9 +133,9 @@ namespace HealthyLife.Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "TESTE@EMAIL.COM",
                             NormalizedUserName = "TESTER",
-                            PasswordHash = "AQAAAAIAAYagAAAAENiMhtTJyEXwrvetMqQq+H7VuXdydUYm5HYQEkmM1z0pSlB6/xK1Q6syby5D10il3Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKWG9ABMPsI18lxs5WkU4mg83zeOTaPtnxXAHIvlb9npWPnhGBI9+qT65nwGs0S9qw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b410d804-e0bc-4e05-abba-46f6914fcfeb",
+                            SecurityStamp = "e44c9f11-1438-4cbd-ab12-ccc3d5d7745a",
                             TwoFactorEnabled = false,
                             UserName = "Tester"
                         });
@@ -261,10 +264,8 @@ namespace HealthyLife.Persistence.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Position")
-                        .HasColumnType("int");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
