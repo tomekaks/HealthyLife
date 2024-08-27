@@ -19,7 +19,7 @@ namespace HealthyLife.Application.Features.MealItems.Mappings
                 Fiber = mealItem.Fiber,
                 Price = mealItem.Price,
                 ProductId = mealItem.ProductId,
-                ProductDto = mealItem.Product.ToDto(),
+                Product = mealItem.Product.ToDto(),
                 MealId = mealItem.MealId
             };
         }

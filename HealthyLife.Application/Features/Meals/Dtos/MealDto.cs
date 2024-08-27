@@ -14,6 +14,6 @@ namespace HealthyLife.Application.Features.Meals.Dtos
         public double Fiber { get; set; }
         public double Price { get; set; }
         public int DailySumId { get; set; }
-        public List<MealItemDto> MealItemsDto { get; set; }
+        public List<MealItemDto> MealItems { get; set; }
     }
 }

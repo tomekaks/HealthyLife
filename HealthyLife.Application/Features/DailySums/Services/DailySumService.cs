@@ -2,6 +2,7 @@
 using HealthyLife.Application.Features.DailySums.Dtos;
 using HealthyLife.Application.Features.DailySums.Mappings;
 using HealthyLife.Application.Features.Meals.Mappings;
+using HealthyLife.Application.Features.Meals.Dtos;
 using HealthyLife.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -17,16 +18,21 @@ namespace HealthyLife.Application.Features.DailySums.Services
             _context = context;
         }
 
-        public async Task CreateAsync(string userId)
+        public async Task CreateAsync(string userId, string date)
         {
-            var date = DateOnly.Parse(DateTime.Now.ToString());
-            var dailySum = new DailySum { UserId = userId, Date = date };
+            var chosenDate = DateOnly.Parse(date);
+            var dailySum = new DailySum { UserId = userId, Date = chosenDate };
 
-            await _context.DailySums.AddAsync(dailySum);
-            await _context.SaveChangesAsync();
+            var exists = await CheckIfExists(userId, chosenDate);
 
-            var addedDailySum = await GetDailySumAsync(sum => sum.UserId == userId && sum.Date == date);
-            await CreateInitialMealsAsync(addedDailySum);
+            if(!exists)
+            {
+                await _context.DailySums.AddAsync(dailySum);
+                await _context.SaveChangesAsync();
+
+                var addedDailySum = await GetDailySumAsync(sum => sum.UserId == userId && sum.Date == chosenDate);
+                await CreateInitialMealsAsync(addedDailySum);
+            }
         }
 
         public async Task<List<DailySumDto>> GetAllAsync(string userId)
@@ -60,7 +66,10 @@ namespace HealthyLife.Application.Features.DailySums.Services
                 return new DailySumDto { Date = date };
             }
 
-            return dailySum.ToDto();
+            var dailySumDto = dailySum.ToDto();
+            var sumAfterPropertyCalculation = CalculateProperties(dailySumDto);
+
+            return sumAfterPropertyCalculation;
         }
 
         public async Task<DailySumDto> GetByIdAsync(int id)
@@ -101,12 +110,14 @@ namespace HealthyLife.Application.Features.DailySums.Services
 
         private async Task<List<Meal>> CreateInitialMealsAsync(DailySum sum)
         {
+            var nameList = new List<string> { "First meal", "Second meal", "Third meal", "Fourth meal" };
             for(var i = 1; i <= 4; i++)
             {
                 var meal = new Meal()
                 {
                     Position = i,
                     DailySumId = sum.Id,
+                    Name = nameList[i - 1]
                 };
                 await _context.Meals.AddAsync(meal);
             }
@@ -119,6 +130,37 @@ namespace HealthyLife.Application.Features.DailySums.Services
                         .ToListAsync();
 
             return meals;
+        }
+
+        private async Task<bool> CheckIfExists(string userId, DateOnly date)
+        {
+            var exists = await _context.DailySums.FirstOrDefaultAsync(item => item.UserId == userId && item.Date == date);
+            if (exists is null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private DailySumDto CalculateProperties(DailySumDto sum)
+        {
+            foreach(var meal in sum.Meals)
+            {
+                meal.Calories = meal.MealItems.Sum(item =>  item.Calories);
+                meal.Proteins = meal.MealItems.Sum(item =>  item.Proteins);
+                meal.Carbs = meal.MealItems.Sum(item =>  item.Carbs);
+                meal.Fats = meal.MealItems.Sum(item =>  item.Fats);
+                meal.Fiber = meal.MealItems.Sum(item =>  item.Fiber);
+                meal.Price = meal.MealItems.Sum(item =>  item.Price);
+
+                sum.Calories += meal.Calories;
+                sum.Proteins += meal.Proteins;
+                sum.Carbs += meal.Carbs;
+                sum.Fats += meal.Fats;
+                sum.Fiber += meal.Fiber;
+                sum.Price += meal.Price;
+            }
+            return sum;
         }
     }
 }

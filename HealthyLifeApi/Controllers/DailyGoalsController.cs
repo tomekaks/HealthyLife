@@ -21,13 +21,6 @@ namespace HealthyLifeApi.Controllers
             return Ok(dailyGoal);
         }
 
-        [HttpPost]
-        public async Task<ActionResult> CreateAsync([FromBody] CreateDailyGoalDto dailyGoalDto)
-        {
-            await _dailyGoalService.CreateAsync(dailyGoalDto);
-            return Ok();
-        }
-
         [HttpPut]
         public async Task<IActionResult> UpdateAsync([FromBody] UpdateDailyGoalDto dailyGoalDto)
         {

@@ -13,7 +13,7 @@ namespace HealthyLife.Application.Features.MealItems.Dtos
         public double Fiber { get; set; }
         public double Price { get; set; }
         public int ProductId { get; set; }
-        public ProductDto ProductDto { get; set; }
+        public ProductDto Product { get; set; }
         public int MealId { get; set; }
     }
 }

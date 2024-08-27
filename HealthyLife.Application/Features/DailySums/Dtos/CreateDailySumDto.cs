@@ -2,7 +2,6 @@
 {
     public class CreateDailySumDto
     {
-        public DateOnly Date { get; set; }
-        public string UserId { get; set; }
+        public string Date { get; set; }
     }
 }

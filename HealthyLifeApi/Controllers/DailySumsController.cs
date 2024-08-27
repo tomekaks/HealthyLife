@@ -39,9 +39,9 @@ namespace HealthyLifeApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateAsync()
+        public async Task<ActionResult> CreateAsync([FromBody] CreateDailySumDto dailySumDto)
         {
-            await _dailySumService.CreateAsync(CurrentUserId);
+            await _dailySumService.CreateAsync(CurrentUserId, dailySumDto.Date);
             return Ok();
         }
 

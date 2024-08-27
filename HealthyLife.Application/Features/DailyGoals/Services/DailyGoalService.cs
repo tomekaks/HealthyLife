@@ -15,31 +15,14 @@ namespace HealthyLife.Application.Features.DailyGoals.Services
             _context = context;
         }
 
-        public async Task CreateAsync(CreateDailyGoalDto dailyGoalDto)
-        {
-            var dailyGoal = new DailyGoal()
-            {
-                UserId = dailyGoalDto.UserId,
-                Calories = dailyGoalDto.Calories,
-                Proteins = dailyGoalDto.Proteins,
-                Carbs = dailyGoalDto.Carbs,
-                Fats = dailyGoalDto.Fats,
-                Fiber = dailyGoalDto.Fiber
-            };
-
-            await _context.DailyGoals.AddAsync(dailyGoal);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task<DailyGoalDto> GetAsync(string userId)
         {
             var dailyGoal = await _context.DailyGoals.FirstOrDefaultAsync(d => d.UserId == userId);
             
             if(dailyGoal == null)
             {
-                var entityEntry = await _context.DailyGoals.AddAsync(new DailyGoal { UserId = userId });
-                var newDailyGoal = entityEntry.Entity.ToDto();
-                return newDailyGoal;
+                await CreateAsync(userId);
+                dailyGoal = await _context.DailyGoals.FirstOrDefaultAsync(d => d.UserId == userId);
             }
 
             var dailyGoalDto = dailyGoal.ToDto();
@@ -58,6 +41,17 @@ namespace HealthyLife.Application.Features.DailyGoals.Services
             dailyGoal.Fiber = dailyGoalDto.Fiber;
 
             _context.DailyGoals.Update(dailyGoal);
+            await _context.SaveChangesAsync();
+        }
+
+        private async Task CreateAsync(string userId)
+        {
+            var dailyGoal = new DailyGoal()
+            {
+                UserId = userId
+            };
+
+            await _context.DailyGoals.AddAsync(dailyGoal);
             await _context.SaveChangesAsync();
         }
     }

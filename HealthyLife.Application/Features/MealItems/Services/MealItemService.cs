@@ -19,6 +19,7 @@ namespace HealthyLife.Application.Features.MealItems.Services
         {
             var mealItem = new MealItem()
             {
+                Weight = mealItemDto.Weight,
                 Calories = mealItemDto.Calories,
                 Proteins = mealItemDto.Proteins,
                 Carbs = mealItemDto.Carbs,

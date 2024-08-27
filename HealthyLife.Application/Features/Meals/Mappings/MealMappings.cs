@@ -20,7 +20,7 @@ namespace HealthyLife.Application.Features.Meals.Mappings
                 Fiber = meal.Fiber,
                 Price = meal.Price,
                 DailySumId = meal.DailySumId,
-                MealItemsDto = meal.MealItems.Select(item => item.ToDto()).ToList()
+                MealItems = meal.MealItems.Select(item => item.ToDto()).ToList()
             };
         }
     }

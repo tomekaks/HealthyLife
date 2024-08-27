@@ -4,7 +4,7 @@ namespace HealthyLife.Application.Features.DailySums.Services
 {
     public interface IDailySumService
     {
-        Task CreateAsync(string userId);
+        Task CreateAsync(string userId, string date);
         Task UpdateAsync(UpdateDailySumDto dailySumDto);
         Task<DailySumDto> GetByIdAsync(int id);
         Task<DailySumDto> GetByDateAsync(string userId, DateOnly date);

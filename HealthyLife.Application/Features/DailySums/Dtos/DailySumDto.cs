@@ -13,6 +13,7 @@ namespace HealthyLife.Application.Features.DailySums.Dtos
         public double Carbs { get; set; }
         public double Fats { get; set; }
         public double Fiber { get; set; }
+        public double Price { get; set; }
         public double CaloriesBurned { get; set; }
         public List<MealDto> Meals { get; set; }
         public List<WorkoutDto> Workouts { get; set; }
