@@ -38,13 +38,6 @@ namespace HealthyLifeApi.Controllers
             return Ok(dailySumDto);
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult> CreateAsync([FromBody] CreateDailySumDto dailySumDto)
-        //{
-        //    await _dailySumService.CreateAsync(CurrentUserId, dailySumDto.Date);
-        //    return Ok();
-        //}
-
         [HttpPut]
         public async Task<IActionResult> UpdateAsync([FromBody] UpdateDailySumDto dailySumDto)
         {

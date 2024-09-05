@@ -12,6 +12,9 @@ namespace HealthyLife.Persistence.Database.Configurations
                    .HasColumnType("date")
                    .IsRequired();
 
+            builder.HasIndex(d => new { d.UserId, d.Date })
+                   .IsUnique();
+
             builder.HasMany(d => d.Meals)
                    .WithOne(m => m.DailySum);
 

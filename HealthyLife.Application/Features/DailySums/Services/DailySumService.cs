@@ -82,10 +82,7 @@ namespace HealthyLife.Application.Features.DailySums.Services
             await _context.DailySums.AddAsync(dailySum);
             await _context.SaveChangesAsync();
 
-            var createdDailySum = await _context.DailySums.FirstOrDefaultAsync(item => item.UserId == userId && item.Date == date)
-                                  ?? throw new Exception("Could not find newly created Daily sum.");
-
-            await CreateInitialMealsAsync(createdDailySum);
+            await CreateInitialMealsAsync(dailySum);
         }
 
         private async Task<DailySum?> GetDailySumAsync(Expression<Func<DailySum, bool>> expression)
