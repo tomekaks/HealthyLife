@@ -14,7 +14,7 @@ namespace HealthyLife.Application.Features.Workouts.Mappings
                 DailySumId = workout.DailySumId,
                 CaloriesBurned = workout.CaloriesBurned,
                 Minutes = workout.Minutes,
-                ExerciseDto = workout.Exercise.ToDto()
+                Exercise = workout.Exercise.ToDto()
             };
         }
     }

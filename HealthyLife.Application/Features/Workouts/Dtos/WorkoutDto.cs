@@ -8,6 +8,6 @@ namespace HealthyLife.Application.Features.Workouts.Dtos
         public int DailySumId { get; set; }
         public int CaloriesBurned { get; set; }
         public int Minutes { get; set; }
-        public ExerciseDto ExerciseDto { get; set; }
+        public ExerciseDto Exercise { get; set; }
     }
 }

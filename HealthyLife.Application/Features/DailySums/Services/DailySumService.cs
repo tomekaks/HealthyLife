@@ -18,23 +18,6 @@ namespace HealthyLife.Application.Features.DailySums.Services
             _context = context;
         }
 
-        public async Task CreateAsync(string userId, string date)
-        {
-            var chosenDate = DateOnly.Parse(date);
-            var dailySum = new DailySum { UserId = userId, Date = chosenDate };
-
-            var exists = await CheckIfExists(userId, chosenDate);
-
-            if(!exists)
-            {
-                await _context.DailySums.AddAsync(dailySum);
-                await _context.SaveChangesAsync();
-
-                var addedDailySum = await GetDailySumAsync(sum => sum.UserId == userId && sum.Date == chosenDate);
-                await CreateInitialMealsAsync(addedDailySum);
-            }
-        }
-
         public async Task<List<DailySumDto>> GetAllAsync(string userId)
         {
             var dailySums = await _context.DailySums
@@ -54,16 +37,13 @@ namespace HealthyLife.Application.Features.DailySums.Services
 
         public async Task<DailySumDto> GetByDateAsync(string userId, DateOnly date)
         {
-            var dailySum = await _context.DailySums
-                            .Include(sum => sum.Workouts)
-                            .Include(sum => sum.Meals)
-                            .ThenInclude(meal => meal.MealItems)
-                            .ThenInclude(item => item.Product)
-                            .FirstOrDefaultAsync(sum => sum.UserId == userId && sum.Date == date);
+            var dailySum = await GetDailySumAsync(sum => sum.UserId == userId && sum.Date == date);
 
-            if (dailySum is null)
+            if (dailySum == null)
             {
-                return new DailySumDto { Date = date };
+                await CreateAsync(userId, date);
+                dailySum = await GetDailySumAsync(sum => sum.UserId == userId && sum.Date == date)
+                    ?? throw new Exception("Could not find newly created Daily sum.");
             }
 
             var dailySumDto = dailySum.ToDto();
@@ -74,7 +54,7 @@ namespace HealthyLife.Application.Features.DailySums.Services
 
         public async Task<DailySumDto> GetByIdAsync(int id)
         {
-            var dailySum = await GetDailySumAsync(sum => sum.Id == id);
+            var dailySum = await GetDailySumAsync(sum => sum.Id == id) ?? throw new Exception("Daily sum does not exist.");
 
             var dailySumDto = dailySum.ToDto();
             return dailySumDto;
@@ -82,7 +62,7 @@ namespace HealthyLife.Application.Features.DailySums.Services
 
         public async Task UpdateAsync(UpdateDailySumDto dailySumDto)
         {
-            var dailySum = await GetDailySumAsync(sum => sum.Id == dailySumDto.Id);
+            var dailySum = await GetDailySumAsync(sum => sum.Id == dailySumDto.Id) ?? throw new Exception("Daily sum does not exist.");
 
             dailySum.Calories = dailySumDto.Calories;
             dailySum.Proteins = dailySumDto.Proteins;
@@ -95,20 +75,33 @@ namespace HealthyLife.Application.Features.DailySums.Services
             await _context.SaveChangesAsync();
         }
 
-        private async Task<DailySum> GetDailySumAsync(Expression<Func<DailySum, bool>> expression)
+        private async Task CreateAsync(string userId, DateOnly date)
+        {
+            var dailySum = new DailySum { UserId = userId, Date = date };
+
+            await _context.DailySums.AddAsync(dailySum);
+            await _context.SaveChangesAsync();
+
+            var createdDailySum = await _context.DailySums.FirstOrDefaultAsync(item => item.UserId == userId && item.Date == date)
+                                  ?? throw new Exception("Could not find newly created Daily sum.");
+
+            await CreateInitialMealsAsync(createdDailySum);
+        }
+
+        private async Task<DailySum?> GetDailySumAsync(Expression<Func<DailySum, bool>> expression)
         {
             var dailySum = await _context.DailySums
                             .Include(sum => sum.Workouts)
+                            .ThenInclude(workout => workout.Exercise)
                             .Include(sum => sum.Meals)
                             .ThenInclude(meal => meal.MealItems)
                             .ThenInclude(item => item.Product)
-                            .FirstOrDefaultAsync(expression)
-                            ?? throw new Exception("DailySum does not exist");
+                            .FirstOrDefaultAsync(expression);
 
             return dailySum;
         }
 
-        private async Task<List<Meal>> CreateInitialMealsAsync(DailySum sum)
+        private async Task CreateInitialMealsAsync(DailySum sum)
         {
             var nameList = new List<string> { "First meal", "Second meal", "Third meal", "Fourth meal" };
             for(var i = 1; i <= 4; i++)
@@ -122,24 +115,6 @@ namespace HealthyLife.Application.Features.DailySums.Services
                 await _context.Meals.AddAsync(meal);
             }
             await _context.SaveChangesAsync();
-
-            var meals = await _context.Meals
-                        .Include(meal => meal.MealItems)
-                        .ThenInclude(item => item.Product)
-                        .Where(meal => meal.DailySumId == sum.Id)
-                        .ToListAsync();
-
-            return meals;
-        }
-
-        private async Task<bool> CheckIfExists(string userId, DateOnly date)
-        {
-            var exists = await _context.DailySums.FirstOrDefaultAsync(item => item.UserId == userId && item.Date == date);
-            if (exists is null)
-            {
-                return false;
-            }
-            return true;
         }
 
         private DailySumDto CalculateProperties(DailySumDto sum)
@@ -160,6 +135,12 @@ namespace HealthyLife.Application.Features.DailySums.Services
                 sum.Fiber += meal.Fiber;
                 sum.Price += meal.Price;
             }
+
+            foreach (var workout in sum.Workouts)
+            {
+                sum.CaloriesBurned += workout.CaloriesBurned;
+            }
+
             return sum;
         }
     }
