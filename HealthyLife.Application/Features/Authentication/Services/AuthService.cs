@@ -64,7 +64,7 @@ namespace HealthyLife.Application.Features.Authentication.Services
         {
             var user = new ApplicationUser()
             {
-                UserName = registerRequest.UserName,
+                UserName = registerRequest.Email,
                 Email = registerRequest.Email,
             };
 
