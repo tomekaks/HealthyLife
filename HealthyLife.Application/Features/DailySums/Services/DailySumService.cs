@@ -123,14 +123,14 @@ namespace HealthyLife.Application.Features.DailySums.Services
                 meal.Carbs = meal.MealItems.Sum(item =>  item.Carbs);
                 meal.Fats = meal.MealItems.Sum(item =>  item.Fats);
                 meal.Fiber = meal.MealItems.Sum(item =>  item.Fiber);
-                meal.Price = meal.MealItems.Sum(item =>  item.Price);
+                meal.Price = Math.Round(meal.MealItems.Sum(item =>  item.Price),2);
 
                 sum.Calories += meal.Calories;
                 sum.Proteins += meal.Proteins;
                 sum.Carbs += meal.Carbs;
                 sum.Fats += meal.Fats;
                 sum.Fiber += meal.Fiber;
-                sum.Price += meal.Price;
+                sum.Price += Math.Round(meal.Price, 2);
             }
 
             foreach (var workout in sum.Workouts)

@@ -19,6 +19,7 @@ namespace HealthyLife.Persistence.Database
         public DbSet<DailyGoal> DailyGoals { get; set; }
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<Supplement> Supplements { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
