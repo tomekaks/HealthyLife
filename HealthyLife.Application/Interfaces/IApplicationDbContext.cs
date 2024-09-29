@@ -12,6 +12,7 @@ namespace HealthyLife.Application.Interfaces
         DbSet<DailyGoal> DailyGoals { get; set; }
         DbSet<Workout> Workouts { get; set; }
         DbSet<Exercise> Exercises { get; set; }
+        DbSet<Supplement> Supplements { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }

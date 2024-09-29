@@ -3,7 +3,6 @@
     public class UpdateSupplementDto
     {
         public int Id { get; set; }
-        public string Name { get; set; }
         public string Category { get; set; }
         public string ServingForm { get; set; }
         public string ServingUnit { get; set; }
