@@ -5,6 +5,7 @@ using HealthyLife.Application.Features.Exercises.Services;
 using HealthyLife.Application.Features.MealItems.Services;
 using HealthyLife.Application.Features.Meals.Services;
 using HealthyLife.Application.Features.Products.Services;
+using HealthyLife.Application.Features.Supplements.Services;
 using HealthyLife.Application.Features.Workouts.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,7 @@ namespace HealthyLife.Application
     {
         public static IServiceCollection ConfigureApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<IAuthService, AuthService>();
 
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IMealItemService, MealItemService>();
@@ -23,7 +25,7 @@ namespace HealthyLife.Application
             services.AddScoped<IDailyGoalService, DailyGoalService>();
             services.AddScoped<IExerciseService, ExerciseService>();
             services.AddScoped<IWorkoutService, WorkoutService>();
-            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ISupplementService, SupplementService>();
 
             return services;
         }
