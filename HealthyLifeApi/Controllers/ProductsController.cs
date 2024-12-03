@@ -23,14 +23,6 @@ namespace HealthyLifeApi.Controllers
             return Ok(products);
         }
 
-        [HttpGet("by-user")]
-        public async Task<ActionResult<List<ProductDto>>> GetByUserAsync()
-        {
-            var products = await _productService.GetAllAsync();
-            return Ok(products);
-        }
-
-
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto>> GetAsync(int id)
         {

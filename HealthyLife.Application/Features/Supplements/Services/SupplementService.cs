@@ -88,6 +88,9 @@ namespace HealthyLife.Application.Features.Supplements.Services
             supplement.TotalQuantity = supplementDto.TotalQuantity;
             supplement.Price = supplementDto.Price;
             supplement.PricePerServing = supplementDto.PricePerServing;
+
+            _context.Supplements.Update(supplement);
+            await _context.SaveChangesAsync();
         }
 
         private async Task<Supplement> GetSupplementAsync(int id)

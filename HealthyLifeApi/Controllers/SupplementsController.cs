@@ -21,7 +21,7 @@ namespace HealthyLifeApi.Controllers
             return Ok(supplements);
         }
 
-        [HttpGet]
+        [HttpGet("by-user")]
         public async Task<ActionResult<List<SupplementDto>>> GetByUserAsync()
         {
             var supplements = await _supplementService.GetByUserAsync(CurrentUserId);
