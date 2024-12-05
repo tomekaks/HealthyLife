@@ -20,6 +20,9 @@ namespace HealthyLife.Persistence.Database
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<Supplement> Supplements { get; set; }
+        public DbSet<Micronutrient> Micronutrients { get; set; }
+        public DbSet<ProductMicronutrientEntry> ProductMicronutrientEntries { get; set; }
+        public DbSet<SupplementMicronutrientEntry> SupplementMicronutrientEntries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

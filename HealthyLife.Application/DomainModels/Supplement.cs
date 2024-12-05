@@ -13,6 +13,6 @@
         public decimal Price { get; set; }
         public decimal PricePerServing { get; set; }
         public string CreatedBy { get; set; } = string.Empty;
-        public List<MicronutrientEntry> Micronutrients { get; set; } = new();
+        public List<SupplementMicronutrientEntry> Micronutrients { get; set; } = new();
     }
 }
