@@ -13,6 +13,9 @@ namespace HealthyLife.Application.Interfaces
         DbSet<Workout> Workouts { get; set; }
         DbSet<Exercise> Exercises { get; set; }
         DbSet<Supplement> Supplements { get; set; }
+        DbSet<Micronutrient> Micronutrients { get; set; }
+        DbSet<ProductMicronutrientEntry> ProductMicronutrientEntries { get; set; }
+        DbSet<SupplementMicronutrientEntry> SupplementMicronutrientEntries { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
