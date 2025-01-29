@@ -35,7 +35,7 @@ namespace HealthyLife.Application.Features.SupplementMicronutrientEntries.Servic
             await _context.SaveChangesAsync();
         }
 
-        public async Task<SupplementMicronutrientEntryDto> GetById(int id)
+        public async Task<SupplementMicronutrientEntryDto> GetByIdAsync(int id)
         {
             var supplementMicronutrientEntry = await GetSupplementMicronutrientEntryAsync(id);
             var supplementMicronutrientEntryDto = supplementMicronutrientEntry.ToDto();

@@ -7,6 +7,6 @@ namespace HealthyLife.Application.Features.ProductMicronutrientEntries.Services
         Task CreateAsync(CreateProductMicronutrientEntryDto productMicronutrientEntryDto);
         Task DeleteAsync(int id);
         Task UpdateAsync(UpdateProductMicronutrientEntryDto productMicronutrientEntryDto);
-        Task<ProductMicronutrientEntryDto> GetById(int id);
+        Task<ProductMicronutrientEntryDto> GetByIdAsync(int id);
     }
 }

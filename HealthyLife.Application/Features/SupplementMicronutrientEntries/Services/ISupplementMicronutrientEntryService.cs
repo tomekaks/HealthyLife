@@ -7,6 +7,6 @@ namespace HealthyLife.Application.Features.SupplementMicronutrientEntries.Servic
         Task CreateAsync(CreateSupplementMicronutrientEntryDto supplementMicronutrientEntryDto);
         Task DeleteAsync(int id);
         Task UpdateAsync(UpdateSupplementMicronutrientEntryDto supplementMicronutrientEntryDto);
-        Task<SupplementMicronutrientEntryDto> GetById(int id);
+        Task<SupplementMicronutrientEntryDto> GetByIdAsync(int id);
     }
 }
